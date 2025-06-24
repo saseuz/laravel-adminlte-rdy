@@ -1,0 +1,25 @@
+{
+    "name": "saseuz/laravel-adminlte-rdy",
+    "description": "AdminLte Dashboard UI for Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Saseuz\\LaravelAdminlteRdy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Saseuz\\LaravelAdminlteRdy\\LaravelAdminlteRdyServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "saseuz",
+            "email": "soulkeeper94@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
