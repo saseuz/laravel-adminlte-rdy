@@ -12,6 +12,12 @@ if (! function_exists('admin_route')) {
     }
 }
 
+if (! function_exists('admin_route_name')) {
+    function admin_route_name() {
+        return config('admin.name');
+    }
+}
+
 if (! function_exists('active_state')) {
     function active_state($url) {
         return request()->is(admin_route().$url);

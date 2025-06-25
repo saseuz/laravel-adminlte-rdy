@@ -2,5 +2,6 @@
 
 return [
     'login' => '5as3u7_/a4m1n/login',
-    'route' => '5as3u7_/a4m1n'
+    'route' => '5as3u7_/a4m1n',
+    'name'  => '5as3u7_.a4m1n.',
 ];
