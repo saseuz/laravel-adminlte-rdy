@@ -8,7 +8,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route(admin_route().'.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route(admin_route_name().'dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Site Settings</li>
                     </ol>
                 </div><!-- /.col -->

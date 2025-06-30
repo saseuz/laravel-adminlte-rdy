@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4" id="main-sidebar">
     <!-- Brand Logo -->
-    <a href="{{ route(admin_route().'.dashboard') }}" class="brand-link" id="brand-link">
+    <a href="{{ route(admin_route_name().'dashboard') }}" class="brand-link" id="brand-link">
         <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }} Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
@@ -24,7 +24,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{ route(admin_route() . '.dashboard') }}" class="nav-link @if(active_state('/dashboard')) active @endif">
+                <a href="{{ route(admin_route_name() . 'dashboard') }}" class="nav-link @if(active_state('/dashboard')) active @endif">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                     Dashboard
@@ -41,7 +41,7 @@
                 @if(!isset($sidebar['child-view']))
                     @can(isset($sidebar['permission']) ? $sidebar['permission'] : '')
                     <li class="nav-item">
-                        <a href="{{ route(admin_route().$sidebar['route']) }}" class="nav-link @if(active_state($sidebar['url'])) active @endif">
+                        <a href="{{ route(admin_route_name().$sidebar['route']) }}" class="nav-link @if(active_state($sidebar['url'])) active @endif">
                             <i class="{{ $sidebar['icon'] }}"></i>
                             <p>
                                 {{ $sidebar['name'] }}
@@ -64,7 +64,7 @@
                                 @foreach($sidebar['child-view'] as $key => $child)
                                     @can(isset($child['permission']) ? $child['permission'] : '')
                                         <li class="nav-item">
-                                            <a href="{{ route(admin_route().$child['route']) }}" class="nav-link @if(active_state($child['url'])) active @endif">
+                                            <a href="{{ route(admin_route_name().$child['route']) }}" class="nav-link @if(active_state($child['url'])) active @endif">
                                                 <i class="nav-icon fas fa-user-tag"></i>
                                                 <p>{{ $child['name'] }}</p>
                                             </a>
@@ -84,7 +84,7 @@
     </div>
     <!-- /.sidebar -->
     <div class="sidebar-custom">
-        <a href="{{ route(admin_route().'.site-settings') }}" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+        <a href="{{ route(admin_route_name().'site-settings') }}" class="btn btn-link"><i class="fas fa-cogs"></i></a>
         {{-- <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a> --}}
     </div>
 </aside>
