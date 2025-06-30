@@ -25,7 +25,7 @@ Run this code in project to install UI and configs
 php artisan vendor:publish --tag=install-adminlte
 ```
 
-After that you need to add this code to `boostrap/app`
+After that you need to add this code to `boostrap/app.php`
 ```
 use Illuminate\Support\Facades\Route;
 
