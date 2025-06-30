@@ -2,7 +2,7 @@
 <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4" id="main-sidebar">
     <!-- Brand Logo -->
     <a href="{{ route(admin_route_name().'dashboard') }}" class="brand-link" id="brand-link">
-        <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="{{ config('app.name') }} Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('adminlte/dist/img/Logo.png') }}" alt="{{ config('app.name') }} Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
 

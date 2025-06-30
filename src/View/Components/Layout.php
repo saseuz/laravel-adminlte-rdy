@@ -8,6 +8,6 @@ class Layout extends Component
 {
     public function render()
     {
-        return view('adminlte::components.layout');
+        return view('backend.components.layout');
     }
 }

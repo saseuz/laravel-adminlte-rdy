@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Saseuz\LaravelAdminlteRdy\Http\Controllers\DashboardController;
+use App\Http\Controllers\Backend\DashboardController;
 
 Route::group([
     'prefix' => admin_route(),

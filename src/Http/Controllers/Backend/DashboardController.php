@@ -1,6 +1,6 @@
 <?php
 
-namespace Saseuz\LaravelAdminlteRdy\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 
@@ -8,11 +8,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('adminlte::backend.dashboard');
+        return view('backend.dashboard.index');
     }
 
     public function settings()
     {
-        return view('adminlte::backend.site-settings');
+        return view('backend.dashboard.site-settings');
     }
 }
