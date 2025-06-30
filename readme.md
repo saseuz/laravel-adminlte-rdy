@@ -25,6 +25,17 @@ Run this code in project to install UI and configs
 php artisan vendor:publish --tag=install-adminlte
 ```
 
+After that you need to add this code to `boostrap/app`
+```
+use Illuminate\Support\Facades\Route;
+
+then: function() {
+    Route::middleware(['web'])
+        ->namespace('App\Http\Controllers\Backend')
+        ->group(base_path('routes/backend.php'));
+}
+```
+
 ## Usage
 
 Change admin's route/login url in project's config/admin.php
