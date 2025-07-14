@@ -145,99 +145,96 @@
 @push('extra-script')
 <!-- Site Settings Script -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    $(document).ready(function () {
 
-        const theme = document.getElementById('color-theme');
-        theme.value = localStorage.getItem('theme');
-        theme.addEventListener('click', (e) => {
+        // Theme toggle
+        const $theme = $('#color-theme');
+        $theme.val(localStorage.getItem('theme'));
+        $theme.on('click', function (e) {
             toggleTheme(e);
-        })
+        });
 
-
-        const accentColor = document.getElementById('accent-color');
-        accentColor.value = localStorage.getItem('accent-color');
-        accentColor.addEventListener('click', (e) => {
+        // Accent color
+        const $accentColor = $('#accent-color');
+        $accentColor.val(localStorage.getItem('accent-color'));
+        $accentColor.on('click', function (e) {
             changeAccentColor(e);
         });
 
-        const sidebarHeader = document.getElementById('sidebar-header-color');
-        sidebarHeader.value = localStorage.getItem('sidebar-header-color');
-        sidebarHeader.addEventListener('click', (e) => {
+        // Sidebar header color
+        const $sidebarHeader = $('#sidebar-header-color');
+        $sidebarHeader.val(localStorage.getItem('sidebar-header-color'));
+        $sidebarHeader.on('click', function (e) {
             changeSidebarHeader(e);
         });
 
-        const sidebarColor = document.getElementById('sidebar-color');
-        sidebarColor.value = localStorage.getItem('bg-sidebar');
-        sidebarColor.addEventListener('click', (e) => {
+        // Sidebar background color
+        const $sidebarColor = $('#sidebar-color');
+        $sidebarColor.val(localStorage.getItem('bg-sidebar'));
+        $sidebarColor.on('click', function (e) {
             changeSidebarColor(e);
         });
-        
+
+        function toggleTheme(e) {
+            const $body = $('body');
+            const value = $(e.target).val();
+            const $navbar = $('#navbar');
+
+            if (value === 'dark') {
+                $body.addClass('dark-mode');
+                $navbar.removeClass('navbar-white navbar-light').addClass('navbar-dark');
+            } else {
+                $body.removeClass('dark-mode');
+                $navbar.removeClass('navbar-dark').addClass('navbar-white navbar-light');
+            }
+
+            localStorage.setItem('theme', value);
+        }
+
+        function changeAccentColor(e) {
+            const $body = $('body');
+            const currentColor = localStorage.getItem('accent-color');
+            const colorValue = $(e.target).val();
+
+            if (currentColor !== colorValue) {
+                $body.removeClass(`accent-${currentColor}`);
+            }
+
+            $body.addClass(`accent-${colorValue}`);
+            localStorage.setItem('accent-color', colorValue);
+        }
+
+        function changeSidebarHeader(e) {
+            const $brandLink = $('#brand-link');
+            const currentColor = localStorage.getItem('sidebar-header-color');
+            const colorValue = $(e.target).val();
+
+            if (currentColor !== colorValue) {
+                $brandLink.removeClass(currentColor);
+            }
+
+            $brandLink.addClass(colorValue);
+            localStorage.setItem('sidebar-header-color', colorValue);
+        }
+
+        function changeSidebarColor(e) {
+            const $sidebar = $('#main-sidebar');
+            const currentColor = localStorage.getItem('sidebar-color');
+            const value = $(e.target).val();
+            const theme = localStorage.getItem('theme');
+            const colorClass = `sidebar-${theme}-${value}`;
+
+            if (currentColor !== colorClass) {
+                $sidebar.removeClass(currentColor);
+            }
+
+            $sidebar.addClass(colorClass);
+            localStorage.setItem('sidebar-color', colorClass);
+            localStorage.setItem('sidebar-color-changed', true);
+            localStorage.setItem('bg-sidebar', value);
+        }
     });
 
-    function toggleTheme(e) {
-        const body = document.body;
-        let value = e.target.value;
-        const navbar = document.getElementById('navbar');
-
-        if (value == 'dark') {
-
-            body.classList.add('dark-mode');
-
-            navbar.classList.remove('navbar-white', 'navbar-light');
-            navbar.classList.add('navbar-dark');
-
-            localStorage.setItem('theme', value);
-        } else {
-            body.classList.remove('dark-mode');
-
-            navbar.classList.remove('navbar-dark');
-            navbar.classList.add('navbar-white', 'navbar-light');
-
-            localStorage.setItem('theme', value);
-        }
-    }
-
-    function changeAccentColor(e) {
-        const body = document.body;
-        const currentColor = localStorage.getItem('accent-color');
-        const colorValue = e.target.value;
-
-        if (currentColor != colorValue) {
-            body.classList.remove(`accent-${currentColor}`);
-        }
-        
-        body.classList.add(`accent-${colorValue}`);
-        localStorage.setItem('accent-color', colorValue);
-    }
-
-    function changeSidebarHeader(e) {
-        const brandLink = document.getElementById('brand-link');
-        const currentColor = localStorage.getItem('sidebar-header-color');
-        const colorValue = e.target.value;
-
-        if (currentColor != colorValue) {
-            brandLink.classList.remove(`${currentColor}`);
-        }
-        
-        brandLink.classList.add(`${colorValue}`);
-        localStorage.setItem('sidebar-header-color', colorValue);
-    }
-
-    function changeSidebarColor(e) {
-        const sidebar = document.getElementById('main-sidebar');
-        const currentColor = localStorage.getItem('sidebar-color');
-        const colorValue = e.target.value;
-        const colorClass = 'sidebar-'+ localStorage.getItem('theme') + '-' + colorValue;
-        
-        if (currentColor != colorClass) {
-            sidebar.classList.remove(currentColor);
-        }
-
-        sidebar.classList.add(colorClass);
-        localStorage.setItem('sidebar-color', colorClass);
-        localStorage.setItem('sidebar-color-changed', true);
-        localStorage.setItem('bg-sidebar', colorValue);
-    }
     
 </script>
 @endpush

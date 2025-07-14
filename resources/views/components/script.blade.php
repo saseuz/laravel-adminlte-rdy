@@ -8,6 +8,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- SweetAlert2 -->
+<script src="{{ asset('adminlte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
@@ -31,43 +33,85 @@
 
 <!-- Theme Color -->
 <script>
+  // Set defaults if not already in localStorage
   const sidebarHeader = localStorage.getItem('sidebar-header-color');
   if (!sidebarHeader) {
-    localStorage.setItem('theme', 'light');
-    localStorage.setItem('bg-sidebar', 'primary');
+      localStorage.setItem('theme', 'light');
+      localStorage.setItem('bg-sidebar', 'primary');
   }
-  
-  window.onload = () => {
-    const themeClass = localStorage.getItem('theme');
-    const body = document.body;
-    const navbar = document.getElementById('navbar');
-    body.classList.add(themeClass+'-mode');
-    
-    if (themeClass == 'dark') {
-        navbar.classList.remove('navbar-white', 'navbar-light');
-        navbar.classList.add('navbar-dark');
-    } else {
-        navbar.classList.remove('navbar-dark');
-        navbar.classList.add('navbar-white', 'navbar-light');
-    }
 
-    const accentClass = localStorage.getItem('accent-color');
-    if (accentClass) {
-      body.classList.add('accent-'+accentClass);
-    }
+  $(window).on('load', function () {
+      const themeClass = localStorage.getItem('theme');
+      const $body = $('body');
+      const $navbar = $('#navbar');
 
-    const brandLink = document.getElementById('brand-link');
-    if (sidebarHeader) {
-      brandLink.classList.add(sidebarHeader);
-    }
+      // Apply theme class
+      $body.addClass(`${themeClass}-mode`);
 
-    const sidebar = document.getElementById('main-sidebar');
-    if(localStorage.getItem('sidebar-color-changed')) {
-      sidebar.classList.remove('sidebar-light-primary');
-    }
-    const sidebarColor = localStorage.getItem('sidebar-color');
-    if (sidebarColor) {
-      sidebar.classList.add(sidebarColor);
-    }
-  }
+      if (themeClass === 'dark') {
+          $navbar.removeClass('navbar-white navbar-light').addClass('navbar-dark');
+      } else {
+          $navbar.removeClass('navbar-dark').addClass('navbar-white navbar-light');
+      }
+
+      // Apply accent color
+      const accentClass = localStorage.getItem('accent-color');
+      if (accentClass) {
+          $body.addClass(`accent-${accentClass}`);
+      }
+
+      // Apply sidebar header color
+      const $brandLink = $('#brand-link');
+      if (sidebarHeader) {
+          $brandLink.addClass(sidebarHeader);
+      }
+
+      // Apply sidebar color
+      const $sidebar = $('#main-sidebar');
+      if (localStorage.getItem('sidebar-color-changed')) {
+          $sidebar.removeClass('sidebar-light-primary');
+      }
+
+      const sidebarColor = localStorage.getItem('sidebar-color');
+      if (sidebarColor) {
+          $sidebar.addClass(sidebarColor);
+      }
+  });
+
+  @if ($errors->any())
+    Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        html: `{!! implode('<br>', $errors->all()) !!}`,
+        timer: 5000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+    });
+  @endif
+
+  @if(session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: '{{ session('success') }}',
+        timer: 3000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+    });
+  @endif
+
+  @if(session('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: '{{ session('error') }}',
+        timer: 3000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+    });
+  @endif
+
 </script>

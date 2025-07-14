@@ -65,7 +65,7 @@
                                     @can(isset($child['permission']) ? $child['permission'] : '')
                                         <li class="nav-item">
                                             <a href="{{ route(admin_route_name().$child['route']) }}" class="nav-link @if(active_state($child['url'])) active @endif">
-                                                <i class="nav-icon fas fa-user-tag"></i>
+                                                <i class="{{ $child['icon'] }}"></i>
                                                 <p>{{ $child['name'] }}</p>
                                             </a>
                                         </li>
